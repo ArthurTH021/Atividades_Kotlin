@@ -4,6 +4,12 @@
 * */
 
 fun main() {
+
+    val doginho = Animal("Rex", 5.0)
+    val billy = Cachorro("Rex", 5.0)
+    doginho.fazerBarulho()
+    billy.latir()
+
     val pessoa : Pessoa = Pessoa()//Isso aqui é um objeto vazio
     pessoa.nome = "Maria"
     pessoa.altura = 1.69
