@@ -24,7 +24,7 @@ fun main(){
     println("Dinheiro atual na conta: ")
     println(banco.saldo)
 
-    val transacao = instalador.receberConta("2000".toBigDecimal(), instalador)
+    val transacao = instalador.receberConta(instalador.salario, instalador)
     banco.saldo += transacao.dinheiro
     println("Transação feita, instalador pago!!")
     println(banco.saldo)
