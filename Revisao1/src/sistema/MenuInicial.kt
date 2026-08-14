@@ -1,6 +1,9 @@
 package sistema
 
+import produto.CaixaDaAgua
+import repositorio.JPA
 import sistema.caixadeagua.cadastrarNovaCaixa
+import sistema.caixadeagua.listarCaixa
 
 fun menuInicial() {
     do {
@@ -15,7 +18,7 @@ fun menuInicial() {
         when (op) {
             "1" -> cadastrarNovaCaixa()
             "2" -> println("")
-            "3" -> println("")
+            "3" -> listarCaixa()
             "4" -> println("")
             "0" -> {
                 println("Adeus")
