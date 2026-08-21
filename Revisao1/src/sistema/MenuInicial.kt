@@ -1,8 +1,8 @@
 package sistema
 
-import produto.CaixaDaAgua
-import repositorio.JPA
 import sistema.caixadeagua.cadastrarNovaCaixa
+import sistema.caixadeagua.editarCaixa
+import sistema.caixadeagua.excluirCaixa
 import sistema.caixadeagua.listarCaixa
 
 fun menuInicial() {
@@ -12,14 +12,16 @@ fun menuInicial() {
         println("[2] Editar caixa de água")
         println("[3] Listar caixas de água")
         println("[4] Excluir caixa de água")
+        println("=====================================")
         print("Digite sua Opção: ")
+
         val op = readln()
 
         when (op) {
             "1" -> cadastrarNovaCaixa()
-            "2" -> println("")
+            "2" -> editarCaixa()
             "3" -> listarCaixa()
-            "4" -> println("")
+            "4" -> excluirCaixa()
             "0" -> {
                 println("Adeus")
                 break
