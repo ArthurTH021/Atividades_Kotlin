@@ -1,6 +1,6 @@
 package pessoas
 
-import financeiro.Banco
+import financeiro.Movimentacao
 import java.math.BigDecimal
 import java.time.LocalDate
 
@@ -10,8 +10,8 @@ open class Pessoa (
     val idade: Int = 1
 )
 {
-    open fun receberConta(valor : BigDecimal, conta: Pessoa) : Banco{
-        return Banco(
+    open fun receberConta(valor : BigDecimal, conta: Pessoa) : Movimentacao{
+        return Movimentacao(
             dinheiro = valor,
             pessoa = conta,
             dataMovimentacao = LocalDate.now()
