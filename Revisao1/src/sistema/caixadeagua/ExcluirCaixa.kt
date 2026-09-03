@@ -1,12 +1,12 @@
 package sistema.caixadeagua
 
-import repositorio.JPA
+import repositorio.CRUDCaixaDaAgua
 
 fun excluirCaixa() {
-    val jpa = JPA()
-    jpa.listar()
+    val CRUDCaixaDaAgua = CRUDCaixaDaAgua()
+    CRUDCaixaDaAgua.listar()
     println("Digite o ID que deseja excluir: ")
     val id = readln().toInt()
 
-    jpa.excluir(id)
+    CRUDCaixaDaAgua.excluir(id)
 }

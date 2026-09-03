@@ -3,11 +3,11 @@ package sistema.caixadeagua
 import enums.Cor
 import enums.Material
 import produto.CaixaDaAgua
-import repositorio.JPA
+import repositorio.CRUDCaixaDaAgua
 
 fun editarCaixa() {
-    val jpa = JPA()
-    jpa.listar()
+    val CRUDCaixaDaAgua = CRUDCaixaDaAgua()
+    CRUDCaixaDaAgua.listar()
     //Aqui é só um exemplo de um item
     //Depois faça de todos
     println("Digite uma caixa que deseja editar: ")
@@ -44,7 +44,7 @@ fun editarCaixa() {
     println("Digite o NOVO preço: ")
     val preco = readln().toBigDecimal()
 
-    jpa.editar(
+    CRUDCaixaDaAgua.editar(
         CaixaDaAgua(
             marca = marca,
             modelo = modelo,
