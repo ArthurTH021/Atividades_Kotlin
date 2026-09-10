@@ -1,0 +1,54 @@
+CREATE TABLE caixa_da_agua(
+    id serial PRIMARY KEY,
+    marca varchar, 
+    modelo varchar,
+    dimensao double precision[], -- Removido o hífen para funcionar no Postgres
+    cor varchar,
+    material varchar,
+    formato varchar,
+    preco varchar
+);
+
+CREATE TABLE estoque(
+    id serial PRIMARY KEY,
+    id_caixa_da_agua integer,
+    quantidade integer,
+    FOREIGN KEY (id_caixa_da_agua) REFERENCES caixa_da_agua(id)
+);
+
+CREATE TABLE movimentacao(
+    id serial PRIMARY KEY,
+    valor varchar, 
+    data_movimentacao date,
+    descricao varchar
+);
+
+CREATE TABLE cliente (
+    id serial PRIMARY KEY,
+    nome_cliente VARCHAR(100),
+    idade_cliente INT,
+    cpf_cliente VARCHAR(20)
+);
+
+CREATE TABLE funcionario (
+    id SERIAL PRIMARY KEY,
+    nome_funcionario VARCHAR(100) NOT NULL,
+    telefone_funcionario VARCHAR(20),
+    setor VARCHAR(50),
+    cpf_funcionario VARCHAR(14) NOT NULL,
+    idade INT,
+    salario NUMERIC(10, 2),
+    turno VARCHAR(20),
+    habilidade VARCHAR(50)
+);
+
+CREATE TABLE fluxo_caixa (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(10) NOT NULL, -- 'ENTRADA' ou 'SAIDA'
+    valor NUMERIC(10, 2) NOT NULL,
+    pagador VARCHAR(100) NOT NULL,
+    recebedor VARCHAR(100) NOT NULL,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    motivo TEXT NOT NULL,
+    responsavel VARCHAR(100) NOT NULL
+);
