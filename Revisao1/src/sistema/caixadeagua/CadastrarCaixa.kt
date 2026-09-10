@@ -4,55 +4,54 @@ import enums.Cor
 import enums.Material
 import produto.CaixaDaAgua
 import repositorio.CRUDCaixaDaAgua
+import utils.Validacoes
+import java.math.BigDecimal
 
 fun cadastrarNovaCaixa() {
-    println("Digite a marca: ")
-    val marca = readln()
+    println("\n--- CADASTRAR CAIXA D'ÁGUA ---")
 
-    println("Digite o modelo: ")
-    val modelo = readln()
+    val marca = Validacoes.lerTextoObrigatorio("Digite a marca: ")
+    val modelo = Validacoes.lerTextoObrigatorio("Digite o modelo: ")
 
-    println("Digite a largura: ")
-    val largura = readln().toDouble()
-    println("Digite a altura: ")
-    val altura = readln().toDouble()
-    println("Digite a profundidade: ")
-    val profundidade = readln().toDouble()
-    //A dimensão é a combinação das 3 variaveis acima
-    val dimensao = mutableListOf<Double>(largura, altura, profundidade)
+    // Usando a leitura segura de Double para evitar quebra de sistema
+    val largura = Validacoes.lerDouble("Digite a largura: ")
+    val altura = Validacoes.lerDouble("Digite a altura: ")
+    val profundidade = Validacoes.lerDouble("Digite a profundidade: ")
 
-    println("Escolha a cor: ")
-    Cor.entries.forEach { cor ->
-        println("[${cor.ordinal}] ${cor.name}")
+    // A dimensão é a combinação das 3 variáveis acima
+    val dimensao = mutableListOf(largura, altura, profundidade)
+
+    println("\nEscolha a cor: ")
+    Cor.entries.forEach { corItem ->
+        println("[${corItem.ordinal}] ${corItem.name}")
     }
-    println("Número da cor: ")
-    val cor = readln().toInt()
-
-    println("Escolha a o material: ")
-    Material.entries.forEach { material ->
-        println("[${material.ordinal}] ${material.name}")
+    // Usando leitura segura de inteiro com fallback caso o índice não exista
+    val corIndex = Validacoes.lerInteiro("Número da cor: ")
+    val corEscolhida = Cor.entries.getOrElse(corIndex) { Cor.AZUL }
+    println("\nEscolha o material: ")
+    Material.entries.forEach { materialItem ->
+        println("[${materialItem.ordinal}] ${materialItem.name}")
     }
-    println("Número do material: ")
-    val material = readln().toInt()
+    val materialIndex = Validacoes.lerInteiro("Número do material: ")
+    val materialEscolhido = Material.entries.getOrElse(materialIndex) { Material.POLIETILENO }
 
-    println("Escolha o formato: ")
-    val formato = readln()
+    val formato = Validacoes.lerTextoObrigatorio("Escolha o formato: ")
 
-    println("Qual é o preço: ")
-    val preco = readln().toBigDecimal()
+    // Usando leitura segura para o preço convertendo para BigDecimal sem risco de crash
+    val precoDouble = Validacoes.lerDouble("Qual é o preço: ")
+    val preco = BigDecimal.valueOf(precoDouble)
 
-    val conexao = CRUDCaixaDaAgua()//Cria a variável de conexão com o banco
-    conexao.salvar( //Chama a função salvar
+    val conexao = CRUDCaixaDaAgua() // Cria a variável de conexão com o banco
+    conexao.salvar( // Chama a função salvar
         CaixaDaAgua(
             marca = marca,
-            material = Material.entries[material],
+            material = materialEscolhido,
             modelo = modelo,
             dimensao = dimensao,
-            cor = Cor.entries[cor],
+            cor = corEscolhida,
             formato = formato,
             preco = preco
-
         )
     )
+    println("Caixa d'água cadastrada com sucesso!")
 }
-

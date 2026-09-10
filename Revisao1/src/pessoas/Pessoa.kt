@@ -10,11 +10,12 @@ open class Pessoa (
     val idade: Int = 1
 )
 {
-    open fun receberConta(valor : BigDecimal, conta: Pessoa) : Movimentacao{
+    open fun receberConta(valor: BigDecimal, conta: Pessoa): Movimentacao {
         return Movimentacao(
-            dinheiro = valor,
+            valor = valor,
             pessoa = conta,
-            dataMovimentacao = LocalDate.now()
+            dataMovimentacao = LocalDate.now(),
+            contexto = "Recebimento de conta"
         )
     }
 }

@@ -1,24 +1,17 @@
 package sistema
 
-import sistema.caixadeagua.cadastrarNovaCaixa
-import sistema.caixadeagua.editarCaixa
-import sistema.caixadeagua.excluirCaixa
-import sistema.caixadeagua.listarCaixa
-import sistema.cliente.cadastrarCliente
-import sistema.cliente.editarCliente
-import sistema.cliente.excluirCliente
-import sistema.cliente.listarCliente
-import sistema.instalador.cadastrarInstalador
-import sistema.instalador.editarInstalador
-import sistema.instalador.excluirInstalador
-import sistema.instalador.listarInstalador
+import sistema.caixadeagua.* //o asterisco puxa todos
+import sistema.cliente.*
+import sistema.funcionario.*
+import pagamentos.*
 
 fun menuInicial() {
     do {
         println("[0] Sair")
         println("[1] Gerenciar Caixa de Água")
         println("[2] Gerenciar Cliente")
-        println("[3] Gerenciar Instalador")
+        println("[3] Gerenciar Funcionário")
+        println("[4] Gerenciar Financeiro")
         println("=====================================")
         print("Digite sua Opção: ")
 
@@ -27,7 +20,8 @@ fun menuInicial() {
         when (op) {
             1 -> menuCaixaDeAgua()
             2 -> menuCliente()
-            3 -> menuInstalador()
+            3 -> menuFuncionario()
+            4 -> menuFluxoCaixa()
             0 -> {
                 println("Adeus")
                 break
@@ -85,26 +79,49 @@ fun menuCliente() {
     } while (true)
 }
 
-fun menuInstalador() {
+fun menuFuncionario() {
     do {
-        println("\n=== MENU INSTALADOR ===")
+        println("\n=== MENU FUNCIONÁRIO ===")
         println("[0] Voltar")
-        println("[1] Cadastrar instalador")
-        println("[2] Editar instalador")
-        println("[3] Listar instaladores")
-        println("[4] Excluir instalador")
+        println("[1] Cadastrar funcionario")
+        println("[2] Editar funcionario")
+        println("[3] Listar funcionarios")
+        println("[4] Excluir funcionarios")
         println("=====================================")
         print("Digite sua Opção: ")
 
         val op : Int = readln().toIntOrNull() ?: 10
 
         when (op) {
-            1 -> cadastrarInstalador()
-            2 -> editarInstalador()
-            3 -> listarInstalador()
-            4 -> excluirInstalador()
+            1 -> cadastrarFuncionario()
+            2 -> editarFuncionario()
+            3 -> listarFuncionario()
+            4 -> excluirFuncionario()
             0 -> break
             else -> println("Opção inválida!")
         }
     } while (true)
+
+    // Dentro do seu menu principal (ex: Main.kt)
+    while (true) {
+        println("\n=== SISTEMA DE GESTÃO ===")
+        println("[1] Cadastrar Funcionário")
+        println("[2] Cadastrar Cliente")
+        println("[3] Cadastrar Caixa d'Água")
+        println("[4] Fluxo de Caixa (Extrato / Registrar)") // <-- A opção nova
+        println("[0] Sair")
+        print("Escolha uma opção: ")
+
+        when (readlnOrNull()?.toIntOrNull()) {
+            1 -> cadastrarFuncionario()
+            2 -> cadastrarCliente()
+            3 -> cadastrarNovaCaixa()
+            4 -> menuFluxoCaixa() // <-- Chamando o submenu financeiro
+            0 -> {
+                println("Saindo do sistema...")
+                break
+            }
+            else -> println("Opção inválida!")
+        }
+    }
 }

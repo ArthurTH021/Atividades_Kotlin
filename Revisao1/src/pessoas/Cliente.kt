@@ -2,13 +2,11 @@ package pessoas
 
 import java.math.BigDecimal
 
-class Cliente (
-    nomeCliente: String,
-    cpfCliente: String,
-    idadeCliente: Int,
-    var dividasAbertas: Boolean,
-    var parcelasAPagar : MutableList<Double>
-): Pessoa(
+class Cliente(
+    val nomeCliente: String,
+    val idadeCliente: Int,
+    val cpfCliente: String
+) : Pessoa(
     nome = nomeCliente,
     cpf = cpfCliente,
     idade = idadeCliente){
