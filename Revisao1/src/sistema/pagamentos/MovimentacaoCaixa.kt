@@ -1,4 +1,4 @@
-package financeiro // ou o pacote da sua preferência (ex: pagamentos)
+package sistema.pagamentos
 
 import java.math.BigDecimal
 import java.time.LocalDateTime

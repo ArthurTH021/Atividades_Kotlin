@@ -1,9 +1,12 @@
 package sistema
 
-import sistema.caixadeagua.* //o asterisco puxa todos
+import sistema.caixadeagua.*
 import sistema.cliente.*
 import sistema.funcionario.*
-import pagamentos.*
+import sistema.pagamentos.*
+import repositorio.CRUDServico
+import produto.Servico
+import java.math.BigDecimal
 
 fun menuInicial() {
     do {
@@ -13,6 +16,7 @@ fun menuInicial() {
         println("[2] Gerenciar Cliente")
         println("[3] Gerenciar Funcionário")
         println("[4] Gerenciar Financeiro")
+        println("[5] Gerenciar Serviço") // <-- Opção nova do serviço
         println("=====================================")
         print("Digite sua Opção: ")
 
@@ -23,6 +27,7 @@ fun menuInicial() {
             2 -> menuCliente()
             3 -> menuFuncionario()
             4 -> menuFluxoCaixa()
+            5 -> menuServico() // <-- Chamando o menu de serviços
             0 -> {
                 println("Adeus")
                 break
@@ -102,27 +107,44 @@ fun menuFuncionario() {
             else -> println("Opção inválida!")
         }
     } while (true)
+}
 
-    // Dentro do seu menu principal (ex: Main.kt)
-    while (true) {
-        println("\n=== SISTEMA DE GESTÃO ===")
-        println("[1] Cadastrar Funcionário")
-        println("[2] Cadastrar Cliente")
-        println("[3] Cadastrar Caixa d'Água")
-        println("[4] Fluxo de Caixa (Extrato / Registrar)") // <-- A opção nova
-        println("[0] Sair")
-        print("Escolha uma opção: ")
+// Novo menu para Serviços
+fun menuServico() {
+    val crudServico = CRUDServico()
 
-        when (readlnOrNull()?.toIntOrNull()) {
-            1 -> cadastrarFuncionario()
-            2 -> cadastrarCliente()
-            3 -> cadastrarNovaCaixa()
-            4 -> menuFluxoCaixa() // <-- Chamando o submenu financeiro
-            0 -> {
-                println("Saindo do sistema...")
-                break
+    do {
+        println("\n=== MENU SERVIÇO ===")
+        println("[0] Voltar")
+        println("[1] Cadastrar serviço")
+        println("[2] Listar serviços")
+        println("=====================================")
+        print("Digite sua Opção: ")
+
+        val op: Int = readln().toIntOrNull() ?: 10
+
+        when (op) {
+            1 -> {
+                print("Digite o nome do serviço: ")
+                val nome = readln()
+                print("Digite a descrição: ")
+                val descricao = readln()
+                print("Digite o preço (ex: 150.00): ")
+                val precoInput = readln().toDoubleOrNull() ?: 0.0
+                val preco = BigDecimal.valueOf(precoInput)
+
+                val novoServico = Servico(
+                    nome = nome,
+                    descricao = descricao,
+                    preco = preco
+                )
+                crudServico.cadastrar(novoServico)
             }
+            2 -> {
+                crudServico.listar()
+            }
+            0 -> break
             else -> println("Opção inválida!")
         }
-    }
+    } while (true)
 }

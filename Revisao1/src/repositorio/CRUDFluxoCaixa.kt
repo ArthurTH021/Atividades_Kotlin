@@ -1,6 +1,6 @@
 package repositorio
 
-import financeiro.MovimentacaoCaixa // Ajuste o import se sua model estiver em outro pacote
+import sistema.pagamentos.MovimentacaoCaixa
 import java.sql.SQLException
 import java.sql.Timestamp
 
@@ -21,7 +21,7 @@ class CRUDFluxoCaixa : ConexaoPostgres() {
                 stmt.setString(7, movimentacao.responsavel)
                 stmt.executeUpdate()
             }
-            println("✅ Movimentação financeira registrada com sucesso!")
+            println("Movimentação financeira registrada com sucesso!")
         } catch (e: SQLException) {
             println("❌ Erro ao registrar movimentação financeira: ${e.message}")
         } finally {
@@ -51,7 +51,7 @@ class CRUDFluxoCaixa : ConexaoPostgres() {
                 }
             }
         } catch (e: SQLException) {
-            println("❌ Erro ao consultar fluxo de caixa: ${e.message}")
+            println("Erro ao consultar fluxo de caixa: ${e.message}")
         } finally {
             conexao.close()
         }

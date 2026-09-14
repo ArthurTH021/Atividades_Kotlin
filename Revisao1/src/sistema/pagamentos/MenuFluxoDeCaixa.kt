@@ -1,4 +1,4 @@
-package pagamentos
+package sistema.pagamentos
 
 import repositorio.CRUDFluxoCaixa
 import utils.Validacoes
