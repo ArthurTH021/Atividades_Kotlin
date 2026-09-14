@@ -52,3 +52,10 @@ CREATE TABLE fluxo_caixa (
     motivo TEXT NOT NULL,
     responsavel VARCHAR(100) NOT NULL
 );
+
+CREATE TABLE servico (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco NUMERIC(10, 2) NOT NULL
+);
