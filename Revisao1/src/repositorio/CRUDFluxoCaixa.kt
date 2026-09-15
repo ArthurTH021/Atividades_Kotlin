@@ -23,7 +23,7 @@ class CRUDFluxoCaixa : ConexaoPostgres() {
             }
             println("Movimentação financeira registrada com sucesso!")
         } catch (e: SQLException) {
-            println("❌ Erro ao registrar movimentação financeira: ${e.message}")
+            println("Erro ao registrar movimentação financeira: ${e.message}")
         } finally {
             conexao.close()
         }

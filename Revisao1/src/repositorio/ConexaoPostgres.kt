@@ -6,7 +6,7 @@ import java.sql.SQLException
 
 abstract class ConexaoPostgres(
     val user: String = "postgres",
-    val senha: String = "postgres",
+    val senha: String = "password",
     val url: String = "jdbc:postgresql://localhost:5432/caixaDaAgua"
 ) {
     fun conectar(): Connection? {

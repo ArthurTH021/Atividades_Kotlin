@@ -2,7 +2,7 @@ package sistema.cliente
 
 import pessoas.Cliente
 import repositorio.CRUDCliente
-import utils.Validacoes // Importando o seu objeto de validações
+import utils.Validacoes
 
 fun cadastrarCliente() {
     println("\n--- CADASTRAR CLIENTE ---")

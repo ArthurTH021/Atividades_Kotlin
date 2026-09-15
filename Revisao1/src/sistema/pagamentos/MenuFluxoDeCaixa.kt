@@ -1,8 +1,7 @@
 package sistema.pagamentos
 
-import repositorio.CRUDFluxoCaixa
 import utils.Validacoes
-import financeiro.MovimentacaoCaixa
+import repositorio.CRUDFluxoCaixa
 import java.math.BigDecimal
 
 fun menuFluxoCaixa() {

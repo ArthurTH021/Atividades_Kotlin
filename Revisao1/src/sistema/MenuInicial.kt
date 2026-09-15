@@ -39,7 +39,7 @@ fun menuInicial() {
 
 fun menuCaixaDeAgua() {
     do {
-        println("\n=== MENU CAIXA DE ÁGUA ===")
+        println("\n=========MENU CAIXA DE AGUA===========")
         println("[0] Voltar")
         println("[1] Cadastrar caixa de água")
         println("[2] Editar caixa de água")
@@ -63,7 +63,7 @@ fun menuCaixaDeAgua() {
 
 fun menuCliente() {
     do {
-        println("\n=== MENU CLIENTE ===")
+        println("\n============MENU CLIENTE=============")
         println("[0] Voltar")
         println("[1] Cadastrar cliente")
         println("[2] Editar cliente")
@@ -87,7 +87,7 @@ fun menuCliente() {
 
 fun menuFuncionario() {
     do {
-        println("\n=== MENU FUNCIONÁRIO ===")
+        println("\n==========MENU FUNCIONÁRIO===========")
         println("[0] Voltar")
         println("[1] Cadastrar funcionario")
         println("[2] Editar funcionario")
@@ -109,12 +109,11 @@ fun menuFuncionario() {
     } while (true)
 }
 
-// Novo menu para Serviços
 fun menuServico() {
     val crudServico = CRUDServico()
 
     do {
-        println("\n=== MENU SERVIÇO ===")
+        println("\n============MENU SERVIÇO=============")
         println("[0] Voltar")
         println("[1] Cadastrar serviço")
         println("[2] Listar serviços")
