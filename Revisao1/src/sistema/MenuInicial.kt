@@ -1,5 +1,6 @@
 package sistema
 
+import vendas.*
 import sistema.caixadeagua.*
 import sistema.cliente.*
 import sistema.funcionario.*
@@ -16,7 +17,8 @@ fun menuInicial() {
         println("[2] Gerenciar Cliente")
         println("[3] Gerenciar Funcionário")
         println("[4] Gerenciar Financeiro")
-        println("[5] Gerenciar Serviço") // <-- Opção nova do serviço
+        println("[5] Gerenciar Serviço")
+        println("[6] Gerenciar Vendas")
         println("=====================================")
         print("Digite sua Opção: ")
 
@@ -27,7 +29,8 @@ fun menuInicial() {
             2 -> menuCliente()
             3 -> menuFuncionario()
             4 -> menuFluxoCaixa()
-            5 -> menuServico() // <-- Chamando o menu de serviços
+            5 -> menuServico()
+            6 -> menuVenda()
             0 -> {
                 println("Adeus")
                 break
@@ -45,6 +48,7 @@ fun menuCaixaDeAgua() {
         println("[2] Editar caixa de água")
         println("[3] Listar caixas de água")
         println("[4] Excluir caixa de água")
+        println("[5] Dar entrada no estoque") // <-- Nova opção
         println("=====================================")
         print("Digite sua Opção: ")
 
@@ -55,6 +59,13 @@ fun menuCaixaDeAgua() {
             2 -> editarCaixa()
             3 -> listarCaixa()
             4 -> excluirCaixa()
+            5 -> {
+                print("Digite o ID da caixa d'água: ")
+                val id = readln().toIntOrNull() ?: 0
+                print("Quantidade a adicionar: ")
+                val qtd = readln().toIntOrNull() ?: 0
+                darEntradaCaixa(id, qtd)
+            }
             0 -> break
             else -> println("Opção inválida!")
         }
@@ -146,4 +157,25 @@ fun menuServico() {
             else -> println("Opção inválida!")
         }
     } while (true)
+
+    fun menuVenda() {
+        do {
+            println("\n============MENU VENDAS============")
+            println("[0] Voltar")
+            println("[1] Registrar Venda")
+            println("===================================")
+            print("Digite sua Opção: ")
+
+            val op: Int = readln().toIntOrNull() ?: 10
+
+            when (op) {
+                1 -> menuVenda() // <-- Só a chamada da função aqui!
+                0 -> {
+                    println("Adeus")
+                    break
+                }
+                else -> println("Opção inválida!")
+            }
+        } while (true)
+    }
 }

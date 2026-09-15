@@ -66,8 +66,8 @@ class CRUDCaixaDaAgua : InterfaceJPA<CaixaDaAgua>, ConexaoPostgres() {
 
                 // Percorre linha por linha os dados trazidos da tabela do banco
                 while (resultado.next()) {
-                    // Extrai os valores das colunas específicas e exibe no console
-                    println("ID: ${resultado.getInt("id")} | Marca: ${resultado.getString("marca")} | Modelo: ${resultado.getString("modelo")} | Preço: ${resultado.getString("preco")}")
+                    // Extrai os valores das colunas específicas e exibe no console (adicionada a quantidade)
+                    println("ID: ${resultado.getInt("id")} | Marca:${resultado.getString("marca")} | Modelo: ${resultado.getString("modelo")} | Preço:${resultado.getString("preco")} | Qtd: ${resultado.getInt("quantidade")}")
                 }
             }
         } catch (e: SQLException) {
@@ -138,6 +138,27 @@ class CRUDCaixaDaAgua : InterfaceJPA<CaixaDaAgua>, ConexaoPostgres() {
             println("Erro ao excluir do banco: ${e.message}")
         } finally {
             // Encerra a conexão com o banco
+            conexao.close()
+        }
+    }
+    fun darEntradaCaixa(idCaixa: Int, quantidadeEntrada: Int) {
+        val conexao = ConexaoPostgres().conectar() ?: return
+
+        try {
+            val sql = "UPDATE caixa_da_agua SET quantidade = quantidade + ? WHERE id = ?"
+            conexao.prepareStatement(sql).use { stmt ->
+                stmt.setInt(1, quantidadeEntrada)
+                stmt.setInt(2, idCaixa)
+                val linhasAfetadas = stmt.executeUpdate()
+                if (linhasAfetadas > 0) {
+                    println("Entrada de $quantidadeEntrada unidade(s) registrada com sucesso!")
+                } else {
+                    println("Caixa d'água com ID $idCaixa não encontrada!")
+                }
+            }
+        } catch (e: SQLException) {
+            println("Erro ao registrar entrada: ${e.message}")
+        } finally {
             conexao.close()
         }
     }

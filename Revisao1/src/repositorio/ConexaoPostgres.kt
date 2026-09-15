@@ -4,7 +4,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 
-abstract class ConexaoPostgres(
+open class ConexaoPostgres(
     val user: String = "postgres",
     val senha: String = "password",
     val url: String = "jdbc:postgresql://localhost:5432/caixaDaAgua"
