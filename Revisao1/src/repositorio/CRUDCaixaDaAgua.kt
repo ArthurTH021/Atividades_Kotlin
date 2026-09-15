@@ -41,7 +41,6 @@ class CRUDCaixaDaAgua : InterfaceJPA<CaixaDaAgua>, ConexaoPostgres() {
                 // Executa a alteração no banco de dados (INSERT)
                 stmt.executeUpdate()
             }
-            println("Caixa d'água salva com sucesso!")
 
         } catch (e: SQLException) {
             // Captura qualquer erro específico de SQL e exibe a mensagem amigável no console

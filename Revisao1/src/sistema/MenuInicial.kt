@@ -10,7 +10,7 @@ import java.math.BigDecimal
 
 fun menuInicial() {
     do {
-        println("=====================================")
+        println("===========MENU INICIAL==============")
         println("[0] Sair")
         println("[1] Gerenciar Caixa de Água")
         println("[2] Gerenciar Cliente")

@@ -33,7 +33,6 @@ class CRUDFuncionario : InterfaceJPA<Funcionario>, ConexaoPostgres() {
 
                 stmt.executeUpdate()
             }
-            println("Funcionário cadastrado com sucesso!")
         } catch (e: SQLException) {
             println("Erro ao cadastrar funcionário: ${e.message}")
         } finally {

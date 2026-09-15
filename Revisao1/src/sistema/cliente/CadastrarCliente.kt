@@ -26,7 +26,7 @@ fun cadastrarCliente() {
         val cliente = Cliente(nome, idade, cpf)
         crud.inserir(cliente)
 
-        println("Cliente '$nome' cadastrado com sucesso no banco!")
+        println("Cliente '$nome' cadastrado com sucesso!")
     } catch (e: Exception) {
         println("Erro ao salvar no banco: ${e.message}")
     }
