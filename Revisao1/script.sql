@@ -44,7 +44,7 @@ CREATE TABLE funcionario (
 
 CREATE TABLE fluxo_caixa (
     id SERIAL PRIMARY KEY,
-    tipo VARCHAR(10) NOT NULL, -- 'ENTRADA' ou 'SAIDA'
+    tipo VARCHAR(10) NOT NULL,
     valor NUMERIC(10, 2) NOT NULL,
     pagador VARCHAR(100) NOT NULL,
     recebedor VARCHAR(100) NOT NULL,
