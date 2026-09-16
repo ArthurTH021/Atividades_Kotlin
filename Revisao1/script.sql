@@ -2,7 +2,7 @@ CREATE TABLE caixa_da_agua(
     id serial PRIMARY KEY,
     marca varchar, 
     modelo varchar,
-    dimensao double precision[], -- Removido o hífen para funcionar no Postgres
+    dimensao double precision[],
     cor varchar,
     material varchar,
     formato varchar,
